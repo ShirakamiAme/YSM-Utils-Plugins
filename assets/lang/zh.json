@@ -1,0 +1,12 @@
+{
+  "menu.ysm_utils": "YSM",
+  "level.ysm_utils.error": "错误",
+  "level.ysm_utils.warning": "警告",
+  "menu.ysm_utils.import_model_menu.name": "导入模型",
+  "menu.ysm_utils.import_model_menu.title": "导入模型菜单",
+  "menu.ysm_utils.import_model_menu.directory_error": "目录错误！里面没有任何与 YSM 相关的文件！",
+  "menu.ysm_utils.import_model_menu.transform_model": "检测到该文件夹里的 YSM 模型为旧版模型，需要转换成新版模型格式。<br>点击确定按钮，并选择新版本的导出路径！",
+  "menu.ysm_utils.old_version_transform.directory_exists": "同名文件夹已经存在！",
+  "menu.ysm_utils.old_version_transform.select_output_directory": "选择导出路径",
+  "menu.ysm_utils.old_version_transform.success": "成功导出，导出路径为："
+}

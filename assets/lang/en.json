@@ -1,0 +1,12 @@
+{
+  "menu.ysm_utils": "YSM",
+  "level.ysm_utils.error": "Error",
+  "level.ysm_utils.warning": "Warning",
+  "menu.ysm_utils.import_model_menu.name": "Import Model",
+  "menu.ysm_utils.import_model_menu.title": "Import Model Menu",
+  "menu.ysm_utils.import_model_menu.directory_error": "The directory is incorrect! There are no YSM related files in it!",
+  "menu.ysm_utils.import_model_menu.transform_model": "The model is detected as an old version of YSM model and needs to be converted to the new version format.<br>Click the confirm button and select the new version export path!",
+  "menu.ysm_utils.old_version_transform.directory_exists": "A folder with the same name already exists!",
+  "menu.ysm_utils.old_version_transform.select_output_directory": "Select Output Directory",
+  "menu.ysm_utils.old_version_transform.success": "The export is successful, and the export path is: "
+}

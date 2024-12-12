@@ -4,18 +4,14 @@ import resolve from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
 import image from "@rollup/plugin-image";
 import vue from "rollup-plugin-vue";
-import typescript from "@rollup/plugin-typescript";
 
 export default {
-    input: "src/index.ts",
+    input: "src/index.js",
     output: {
         file: "ysm-utils.js",
         format: "cjs"
     },
     plugins: [
-        typescript({
-            tsconfig: './tsconfig.json'
-        }),
         vue(),
         json(),
         resolve(),
