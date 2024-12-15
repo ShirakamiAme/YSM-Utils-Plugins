@@ -1,0 +1,245 @@
+<script>
+import {join} from "path";
+
+export default {
+    props: {
+        importModelMenuDialog: {
+            type: Object,
+            required: true
+        },
+        ysmJson: {
+            type: Object,
+            required: true
+        },
+        packDirectory: {
+            type: Object,
+            required: true
+        }
+    },
+    data() {
+        return {};
+    },
+    methods: {
+        join,
+        tl
+    },
+    computed: {}
+};
+</script>
+
+<template>
+    <div>
+        <div class="metadata">
+            <div class="metadata-item">
+                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.name") }}</p>
+                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.name.desc") }}</p>
+                <input class="input" type="text" v-model.trim="ysmJson['metadata']['name']">
+            </div>
+
+            <div class="metadata-item">
+                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.tips") }}</p>
+                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.tips.desc") }}</p>
+                <textarea class="textarea" rows="3" v-model.trim="ysmJson['metadata']['tips']"></textarea>
+            </div>
+
+            <div class="metadata-item">
+                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.license") }}</p>
+                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.license.desc") }}</p>
+                <div class="license-item">
+                    <p class="license-text">
+                        {{ tl("menu.ysm_utils.import_model_menu.metadata.license.type") }}
+                    </p>
+                    <input class="license-input" type="text" v-model.trim="ysmJson['metadata']['license']['type']">
+                </div>
+                <div class="license-item">
+                    <p class="license-text">
+                        {{ tl("menu.ysm_utils.import_model_menu.metadata.license.extra_desc") }}
+                    </p>
+                    <input class="license-input" type="text" v-model.trim="ysmJson['metadata']['license']['desc']">
+                </div>
+            </div>
+
+            <div class="metadata-item">
+                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors") }}</p>
+                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.desc") }}</p>
+                <div class="author">
+                    <div v-for="author in ysmJson['metadata']['authors']" class="author-item">
+                        <button class="author-config-button">
+                            <i class="fa-regular fa-pen-to-square" style="vertical-align: middle"></i>
+                            <span>{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.config") }}</span>
+                        </button>
+                        <div v-if="author['avatar']" class="avatar">
+                            <img :src="join(packDirectory, author['avatar'])" alt="avatar" width="76px">
+                        </div>
+                        <p class="author-name">{{ author["name"] }}</p>
+                        <p class="author-role">{{ author["role"] }}</p>
+                        <p class="author-comment">{{ author["comment"] }}</p>
+                    </div>
+                    <div class="author-item">
+                        <div class="author-add">
+                            <i class="fa-solid fa-plus fa-4x" style="margin: 0 auto;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metadata-item">
+                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.link") }}</p>
+                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.link.desc") }}</p>
+                <div class="license-item">
+                    <p class="license-text">
+                        {{ tl("menu.ysm_utils.import_model_menu.metadata.link.home") }}
+                    </p>
+                    <input class="license-input" type="text" v-model.trim="ysmJson['metadata']['link']['home']">
+                </div>
+                <div class="license-item">
+                    <p class="license-text">
+                        {{ tl("menu.ysm_utils.import_model_menu.metadata.link.donate") }}
+                    </p>
+                    <input class="license-input" type="text" v-model.trim="ysmJson['metadata']['link']['donate']">
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style scoped>
+.author {
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.author-item {
+    width: 135px;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding: 5px;
+    background-color: #1e1e22;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #181a1f;
+}
+
+.author-name {
+    color: #b4b4b4;
+    font-size: small;
+}
+
+.author-role {
+    color: #769f16;
+    font-size: small;
+}
+
+.author-comment {
+    color: #6a6a6d;
+    font-size: small;
+}
+
+.author-config-button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.author-add {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    background-color: #272727;
+    display: flex;
+    align-items: center;
+}
+
+.author-add:hover {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    background-color: #396fd6;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    margin: 0 auto;
+    background-color: #3e3e3e;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #181a1f;
+    width: 80px;
+    height: 80px;
+}
+
+.metadata {
+    width: 100%;
+    overflow-y: auto;
+    padding: 10px 20px
+}
+
+.metadata-item {
+    height: 100%;
+    width: 100%;
+    margin-top: 10px
+}
+
+.title {
+    margin: 0;
+    padding: 0;
+    font-size: large
+}
+
+.desc {
+    margin: 0;
+    padding: 0;
+    color: #6a6a6d
+}
+
+.input {
+    border-radius: 1px;
+    margin-top: 5px;
+    padding: 5px;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    background-color: #1c2026;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #181a1f;
+}
+
+.license-item {
+    display: flex;
+}
+
+.license-text {
+    width: 12%;
+    margin-top: 12px;
+    font-size: 15px;
+    color: #6a6a6d
+}
+
+.license-input {
+    flex: 1;
+    border-radius: 1px;
+    margin-top: 5px;
+    padding: 5px;
+    height: 40px;
+    font-size: 20px;
+    background-color: #1c2026;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #181a1f;
+}
+
+.textarea {
+    border-radius: 1px;
+    margin-top: 5px;
+    padding: 5px;
+    width: 100%;
+    font-size: 20px;
+    background-color: #1c2026;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #181a1f;
+}
+</style>
