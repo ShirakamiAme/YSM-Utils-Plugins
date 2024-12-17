@@ -93,9 +93,9 @@ function openImportMenu(packDirectory) {
         width: 1000,
         sidebar: {
             pages: {
-                "metadata": tl("menu.ysm_utils.import_model_menu.metadata.sidebar.metadata"),
-                "properties": tl("menu.ysm_utils.import_model_menu.metadata.sidebar.properties"),
-                "files": tl("menu.ysm_utils.import_model_menu.metadata.sidebar.files")
+                "metadata": tl("menu.ysm_utils.import_model_menu.sidebar.metadata"),
+                "properties": tl("menu.ysm_utils.import_model_menu.sidebar.properties"),
+                "files": tl("menu.ysm_utils.import_model_menu.sidebar.files")
             },
             page: "metadata",
             onPageSwitch(page) {

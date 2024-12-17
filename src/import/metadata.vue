@@ -90,13 +90,13 @@ export default {
                     <p class="license-text">
                         {{ tl("menu.ysm_utils.import_model_menu.metadata.link.home") }}
                     </p>
-                    <input class="license-input" type="text" v-model.trim="ysmJson['metadata']['link']['home']">
+                    <input class="license-input" type="url" v-model.trim="ysmJson['metadata']['link']['home']">
                 </div>
                 <div class="license-item">
                     <p class="license-text">
                         {{ tl("menu.ysm_utils.import_model_menu.metadata.link.donate") }}
                     </p>
-                    <input class="license-input" type="text" v-model.trim="ysmJson['metadata']['link']['donate']">
+                    <input class="license-input" type="url" v-model.trim="ysmJson['metadata']['link']['donate']">
                 </div>
             </div>
         </div>
@@ -197,10 +197,10 @@ export default {
 .input {
     border-radius: 1px;
     margin-top: 5px;
-    padding: 5px;
+    padding: 2px 2px 2px 5px;
     width: 100%;
-    height: 40px;
-    font-size: 20px;
+    height: 30px;
+    font-size: 15px;
     background-color: #1c2026;
     border-style: solid;
     border-width: 1px;
@@ -213,7 +213,7 @@ export default {
 
 .license-text {
     width: 12%;
-    margin-top: 12px;
+    margin-top: 7px;
     font-size: 15px;
     color: #6a6a6d
 }
@@ -222,9 +222,9 @@ export default {
     flex: 1;
     border-radius: 1px;
     margin-top: 5px;
-    padding: 5px;
-    height: 40px;
-    font-size: 20px;
+    padding: 2px 2px 2px 5px;
+    height: 30px;
+    font-size: 15px;
     background-color: #1c2026;
     border-style: solid;
     border-width: 1px;
@@ -234,9 +234,9 @@ export default {
 .textarea {
     border-radius: 1px;
     margin-top: 5px;
-    padding: 5px;
+    padding: 2px 2px 2px 5px;
     width: 100%;
-    font-size: 20px;
+    font-size: 15px;
     background-color: #1c2026;
     border-style: solid;
     border-width: 1px;
