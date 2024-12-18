@@ -21,7 +21,14 @@ export default {
     },
     methods: {
         join,
-        tl
+        tl,
+        getTipsRows: function (tips) {
+            let size = tips.split("\n").length;
+            if (size < 3) {
+                return 3;
+            }
+            return size;
+        }
     },
     computed: {}
 };
@@ -39,7 +46,8 @@ export default {
             <div class="metadata-item">
                 <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.tips") }}</p>
                 <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.tips.desc") }}</p>
-                <textarea class="textarea" rows="3" v-model.trim="ysmJson['metadata']['tips']"></textarea>
+                <textarea class="textarea" :rows="this.getTipsRows(ysmJson['metadata']['tips'])"
+                          v-model.trim="ysmJson['metadata']['tips']"></textarea>
             </div>
 
             <div class="metadata-item">
@@ -70,6 +78,9 @@ export default {
                         </button>
                         <div v-if="author['avatar']" class="avatar">
                             <img :src="join(packDirectory, author['avatar'])" alt="avatar" width="76px">
+                        </div>
+                        <div v-else style="display: flex; align-items: center; height: 90px">
+                            <i class="fa-solid fa-image fa-4x" style="margin: 0 auto;"></i>
                         </div>
                         <p class="author-name">{{ author["name"] }}</p>
                         <p class="author-role">{{ author["role"] }}</p>
@@ -112,6 +123,7 @@ export default {
 
 .author-item {
     width: 135px;
+    min-height: 200px;
     text-align: center;
     margin-top: 5px;
     margin-left: 5px;

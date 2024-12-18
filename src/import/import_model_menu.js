@@ -148,86 +148,89 @@ function normalization(ysmJson) {
     ysmJson["spec"] = 2;
 
     // metadata 部分
-    let metadata = ysmJson["metadata"];
-
-    if (!metadata["tips"]) {
-        metadata["tips"] = "";
-    }
-
-    if (!metadata["license"]) {
-        metadata["license"] = {
-            "type": "All Rights Reserved",
-            "desc:": ""
-        };
-    } else if (!metadata["license"]["desc"]) {
-        metadata["license"]["desc"] = "";
-    }
-
-    if (!metadata["authors"]) {
-        metadata["authors"] = [];
-    }
-
-    if (!metadata["link"]) {
-        metadata["link"] = {};
-    }
+    let metadata = ysmJson["metadata"] ??= {};
+    metadata["name"] ??= "";
+    metadata["tips"] ??= "";
+    metadata["license"] ??= {
+        "type": "All Rights Reserved",
+        "desc:": ""
+    };
+    metadata["license"]["type"] ??= "All Rights Reserved";
+    metadata["license"]["desc"] ??= "";
+    metadata["authors"] ??= [];
+    metadata["authors"].forEach(author => {
+        author["name"] ??= "";
+        author["avatar"] ??= "";
+        author["role"] ??= "";
+        author["contact"] ??= {};
+        author["comment"] ??= "";
+    });
+    metadata["link"] ??= {
+        "home": "",
+        "donate": ""
+    };
+    metadata["link"]["home"] ??= "";
+    metadata["link"]["donate"] ??= "";
 
     // properties 部分
-    let properties;
-    if (!ysmJson["properties"]) {
-        properties = ysmJson["properties"] = {};
-    } else {
-        properties = ysmJson["properties"];
-    }
-
-    if (!properties["height_scale"]) {
-        properties["height_scale"] = 0.7;
-    }
-    if (!properties["width_scale"]) {
-        properties["width_scale"] = 0.7;
-    }
-    if (!properties["extra_animation"]) {
-        properties["extra_animation"] = {
-            "extra0": "",
-            "extra1": "",
-            "extra2": "",
-            "extra3": "",
-            "extra4": "",
-            "extra5": "",
-            "extra6": "",
-            "extra7": ""
-        };
-    }
-    if (!properties["preview_animation"]) {
-        properties["preview_animation"] = "idle";
-    }
-    if (!properties["default_texture"]) {
-        properties["default_texture"] = "";
-    }
-    if (!properties["free"]) {
-        properties["free"] = false;
-    }
-    if (!properties["render_layers_first"]) {
-        properties["render_layers_first"] = false;
-    }
+    let properties = ysmJson["properties"] ??= {};
+    properties["height_scale"] ??= 0.7;
+    properties["width_scale"] ??= 0.7;
+    properties["extra_animation"] ??= {
+        "extra0": "",
+        "extra1": "",
+        "extra2": "",
+        "extra3": "",
+        "extra4": "",
+        "extra5": "",
+        "extra6": "",
+        "extra7": ""
+    };
+    properties["preview_animation"] ??= "idle";
+    properties["default_texture"] ??= "";
+    properties["free"] ??= false;
+    properties["render_layers_first"] ??= false;
 
     // files 部分
-    let files = ysmJson["files"];
+    let files = ysmJson["files"] ??= {};
+
     // player 部分
-    let player = files["player"];
-    if (!player["animation"]) {
-        player["animation"] = {};
-    }
+    let player = files["player"] ?? {};
+    let animation = player["animation"] ??= {};
+    animation["main"] ??= "";
+    animation["arm"] ??= "";
+    animation["extra"] ??= "";
+    animation["tac"] ??= "";
+    animation["carryon"] ??= "";
+    animation["swem"] ??= "";
+    animation["parcool"] ??= "";
+
+    // texture 部分，将其全部修改为对象
+    player["texture"] ??= [];
+    player["texture"] = player["texture"].map(value => {
+        if (typeof value == "string") {
+            return {
+                "uv": value,
+                "normal": "",
+                "specular": ""
+            };
+        } else {
+            value["uv"] ??= "";
+            value["normal"] ??= "";
+            value["specular"] ??= "";
+            return value;
+        }
+    });
 
     // arrow 部分
-    if (!files["arrow"]) {
-        files["arrow"] = {
-            "model": "",
-            "animation": "",
-            "texture": ""
-        };
-    } else if (!files["arrow"]["animation"]) {
-        files["arrow"]["animation"] = "";
-    }
+    let arrow = files["arrow"] ??= {
+        "model": "",
+        "animation": "",
+        "texture": ""
+    };
+    arrow["model"] ??= "";
+    arrow["animation"] ??= "";
+    arrow["texture"] ??= "";
 
     return ysmJson;
 }

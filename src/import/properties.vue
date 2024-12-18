@@ -72,7 +72,7 @@ export default {
                         <input class="input" type="text" style="width: 50%; margin-left: 2px;"
                                v-model.trim="ysmJson['properties']['extra_animation'][animation]">
                     </div>
-                    <button style="width: 44.8%; margin-left: 2px; margin-top: 2px"
+                    <button style="width: 44.8%; margin-left: 2px; margin-top: 2px;"
                             @click="addNewExtraAnimation(ysmJson['properties']['extra_animation'])">
                         <i class="fa-solid fa-plus" style="vertical-align: middle;"></i>
                         <span>{{ tl("menu.ysm_utils.import_model_menu.properties.extra_animation.add") }}</span>
@@ -141,7 +141,8 @@ export default {
 .properties-item {
     height: 100%;
     width: 100%;
-    margin-top: 10px
+    margin-top: 10px;
+    margin-bottom: 20px
 }
 
 .properties-horizontal-item {

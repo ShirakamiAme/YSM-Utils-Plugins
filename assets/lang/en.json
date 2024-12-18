@@ -52,6 +52,11 @@
   "menu.ysm_utils.import_model_menu.files.player.animation.carryon": "Carry On Animation",
   "menu.ysm_utils.import_model_menu.files.player.animation.swem": "SWEM Animation",
   "menu.ysm_utils.import_model_menu.files.player.animation.parcool": "Parcool Animation",
+  "menu.ysm_utils.import_model_menu.files.player.texture": "Player Texture",
+  "menu.ysm_utils.import_model_menu.files.player.texture.desc": "Main player texture file",
+  "menu.ysm_utils.import_model_menu.files.player.texture.uv": "UV Texture",
+  "menu.ysm_utils.import_model_menu.files.player.texture.normal": "Normal Texture",
+  "menu.ysm_utils.import_model_menu.files.player.texture.specular": "Specular Texture",
   "menu.ysm_utils.old_version_transform.directory_exists": "A folder with the same name already exists!",
   "menu.ysm_utils.old_version_transform.select_output_directory": "Select Output Directory",
   "menu.ysm_utils.old_version_transform.success": "The export is successful, and the export path is: "
