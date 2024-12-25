@@ -24,8 +24,6 @@
   "menu.ysm_utils.import_model_menu.metadata.authors.edit": "Edit Author",
   "menu.ysm_utils.import_model_menu.metadata.authors.name": "Author Name",
   "menu.ysm_utils.import_model_menu.metadata.authors.name.desc": "Author Name Desc",
-  "menu.ysm_utils.import_model_menu.metadata.authors.avatar": "Author Avatar",
-  "menu.ysm_utils.import_model_menu.metadata.authors.avatar.desc": "Change Author Avatar",
   "menu.ysm_utils.import_model_menu.metadata.authors.role": "Author Role",
   "menu.ysm_utils.import_model_menu.metadata.authors.role.desc": "Author Role Desc",
   "menu.ysm_utils.import_model_menu.metadata.authors.contact": "Author Contact",

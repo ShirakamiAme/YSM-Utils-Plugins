@@ -23,39 +23,36 @@ export default {
         join,
         tl
     },
-    computed: {}
+    computed: {
+        arrowFiles: function () {
+            return this.ysmJson["files"]["arrow"];
+        }
+    }
 };
 </script>
 
 <template>
-    <div>
-        <div>
-            <button style="width: 100%">
-                {{ tl("menu.ysm_utils.import_model_menu.files.import") }}
-            </button>
-        </div>
+    <div class="new-author">
+        <button style="width: 100%"> {{ tl("menu.ysm_utils.import_model_menu.files.import") }}</button>
 
-        <div class="new-author">
-            <div class="new-author-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.sidebar.arrow_files") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.files.arrow.desc") }}</p>
-                <div class="list-item">
-                    <div style="display: flex;">
-                        <p class="list-text"> {{ tl("menu.ysm_utils.import_model_menu.files.arrow.model") }}</p>
-                        <input class="model-input" type="text"
-                               v-model.trim="ysmJson['files']['arrow']['model']"
-                               readonly>
-                    </div>
-                    <div style="display: flex;">
-                        <p class="list-text"> {{ tl("menu.ysm_utils.import_model_menu.files.arrow.texture") }}</p>
-                        <input class="model-input" type="text" v-model.trim="ysmJson['files']['arrow']['texture']"
-                               readonly>
-                    </div>
-                    <div style="display: flex;">
-                        <p class="list-text"> {{ tl("menu.ysm_utils.import_model_menu.files.arrow.animation") }}</p>
-                        <input class="model-input" type="text" v-model.trim="ysmJson['files']['arrow']['animation']"
-                               readonly>
-                    </div>
+        <div class="new-author-item">
+            <p class="title">{{ tl("menu.ysm_utils.import_model_menu.sidebar.arrow_files") }}</p>
+            <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.files.arrow.desc") }}</p>
+
+            <div class="li-item">
+                <div style="display: flex;">
+                    <p class="li-text"> {{ tl("menu.ysm_utils.import_model_menu.files.arrow.model") }}</p>
+                    <input class="input" type="text" v-model.trim="arrowFiles['model']" readonly>
+                </div>
+
+                <div style="display: flex;">
+                    <p class="li-text"> {{ tl("menu.ysm_utils.import_model_menu.files.arrow.texture") }}</p>
+                    <input class="input" type="text" v-model.trim="arrowFiles['texture']" readonly>
+                </div>
+
+                <div style="display: flex;">
+                    <p class="li-text"> {{ tl("menu.ysm_utils.import_model_menu.files.arrow.animation") }}</p>
+                    <input class="input" type="text" v-model.trim="arrowFiles['animation']" readonly>
                 </div>
             </div>
         </div>
@@ -87,14 +84,14 @@ export default {
     color: #6a6a6d
 }
 
-.list-text {
+.li-text {
     width: 20%;
     margin-top: 7px;
     font-size: 15px;
     color: #8b8b8d
 }
 
-.model-input {
+.input {
     flex: 1;
     border-radius: 1px;
     margin-top: 5px;
@@ -107,7 +104,7 @@ export default {
     border-color: #181a1f;
 }
 
-.list-item {
+.li-item {
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 10px;

@@ -43,58 +43,59 @@ export default {
 </script>
 
 <template>
-    <div>
-        <div class="new-author">
-            <div class="new-author-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.name") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.name.desc") }}</p>
-                <input class="input" type="text" v-model.trim="newAuthor['name']">
-            </div>
-
-            <div class="new-author-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.role") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.role.desc") }}</p>
-                <input class="input" type="text" v-model.trim="newAuthor['role']">
-            </div>
-
-            <div class="new-author-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.comment") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.comment.desc") }}</p>
-                <input class="input" type="text" v-model.trim="newAuthor['comment']">
-            </div>
-
-            <div class="new-author-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.contact") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.contact.desc") }}</p>
-                <div v-for="(contact, type) in newAuthor['contact']">
-                    <input class="input-contact-type" type="text" v-model="type">
-                    <input class="input-contact" type="text" v-model.trim="newAuthor['contact'][type]">
-                    <button style="width: 6%; min-width: 5%; padding: 0;">
-                        <i class="fas fa-trash-alt" style="margin: 0 auto 3px;"></i>
-                    </button>
+    <div class="new-author">
+        <div class="horizontal-item">
+            <div style="width: 40%; margin: 0 auto;">
+                <div style="padding: 10px; background-color: #1c2026; width: 200px; height: 200px;">
+                    <div v-if="newAuthor['avatar']">
+                        <img :src="getImgPath()" alt="img" class="img">
+                    </div>
+                    <div v-else>
+                        <i class="fas fa-images fa-9x" style="margin: 20px 8px"></i>
+                    </div>
                 </div>
-                <button style="width: 100%;margin-top: 5px">
-                    {{ tl("menu.ysm_utils.import_model_menu.metadata.authors.contact.add") }}
+            </div>
+
+
+            <div style="width: 58%">
+                <div style="width: 100%; height: 100%">
+                    <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.name") }}</p>
+                    <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.name.desc") }}</p>
+                    <input class="input" type="text" v-model.trim="newAuthor['name']">
+                </div>
+
+
+                <div style="width: 100%; height: 100%; margin-top: 10px">
+                    <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.role") }}</p>
+                    <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.role.desc") }}</p>
+                    <input class="input" type="text" v-model.trim="newAuthor['role']">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="new-author-item">
+            <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.comment") }}</p>
+            <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.comment.desc") }}</p>
+            <input class="input" type="text" v-model.trim="newAuthor['comment']">
+        </div>
+
+
+        <div class="new-author-item">
+            <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.contact") }}</p>
+            <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.contact.desc") }}</p>
+
+            <div v-for="(_, type) in newAuthor['contact']">
+                <input class="input-contact-type" type="text" v-model="type">
+                <input class="input-contact" type="text" v-model.trim="newAuthor['contact'][type]">
+                <button style="width: 6%; min-width: 5%; padding: 0;">
+                    <i class="fas fa-trash-alt" style="margin: 0 auto 3px;"></i>
                 </button>
             </div>
 
-            <div class="author-horizontal-item">
-                <div style="width: 38%; margin: 0 auto;">
-                    <div style="padding: 10px; background-color: #1c2026; width: 120px; height: 120px;">
-                        <div v-if="newAuthor['avatar']">
-                            <img :src="getImgPath()" alt="img" class="img">
-                        </div>
-                        <div v-else>
-                            <div class="img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="width: 60%">
-                    <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.avatar") }}</p>
-                    <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.avatar.desc") }}</p>
-                </div>
-            </div>
+            <button style="width: 100%;margin-top: 5px">
+                {{ tl("menu.ysm_utils.import_model_menu.metadata.authors.contact.add") }}
+            </button>
         </div>
     </div>
 </template>
@@ -164,14 +165,13 @@ export default {
 }
 
 .img {
-    width: 100px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
 }
 
-.author-horizontal-item {
+.horizontal-item {
     height: 100%;
     width: 100%;
-    margin-top: 20px;
     display: flex;
     align-items: center;
 }

@@ -37,85 +37,95 @@ export default {
             editAuthorDialog(this.ysmJson, this.packDirectory, editAuthor);
         }
     },
-    computed: {}
+    computed: {
+        metadata: function () {
+            return this.ysmJson["metadata"];
+        },
+        license: function () {
+            return this.metadata["license"];
+        },
+        link: function () {
+            return this.metadata["link"];
+        }
+    }
 };
 </script>
 
 <template>
-    <div>
-        <div class="metadata">
-            <div class="metadata-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.name") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.name.desc") }}</p>
-                <input class="input" type="text" v-model.trim="ysmJson['metadata']['name']">
+    <div class="metadata">
+        <div class="metadata-item">
+            <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.name") }}</p>
+            <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.name.desc") }}</p>
+            <input class="input" type="text" v-model.trim="metadata['name']">
+        </div>
+
+
+        <div class="metadata-item">
+            <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.tips") }}</p>
+            <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.tips.desc") }}</p>
+            <textarea class="textarea" :rows="this.getTipsRows(metadata['tips'])"
+                      v-model.trim="metadata['tips']"></textarea>
+        </div>
+
+
+        <div class="metadata-item">
+            <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.license") }}</p>
+            <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.license.desc") }}</p>
+
+            <div class="horizontal-item">
+                <p class="horizontal-text">{{ tl("menu.ysm_utils.import_model_menu.metadata.license.type") }}</p>
+                <input class="horizontal-input" type="text" v-model.trim="license['type']">
             </div>
 
-            <div class="metadata-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.tips") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.tips.desc") }}</p>
-                <textarea class="textarea" :rows="this.getTipsRows(ysmJson['metadata']['tips'])"
-                          v-model.trim="ysmJson['metadata']['tips']"></textarea>
+            <div class="horizontal-item">
+                <p class="horizontal-text">{{ tl("menu.ysm_utils.import_model_menu.metadata.license.extra_desc") }}</p>
+                <input class="horizontal-input" type="text" v-model.trim="license['desc']">
             </div>
+        </div>
 
-            <div class="metadata-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.license") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.license.desc") }}</p>
-                <div class="license-item">
-                    <p class="license-text">
-                        {{ tl("menu.ysm_utils.import_model_menu.metadata.license.type") }}
-                    </p>
-                    <input class="license-input" type="text" v-model.trim="ysmJson['metadata']['license']['type']">
-                </div>
-                <div class="license-item">
-                    <p class="license-text">
-                        {{ tl("menu.ysm_utils.import_model_menu.metadata.license.extra_desc") }}
-                    </p>
-                    <input class="license-input" type="text" v-model.trim="ysmJson['metadata']['license']['desc']">
-                </div>
-            </div>
 
-            <div class="metadata-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.desc") }}</p>
-                <div class="author">
-                    <div v-for="author in ysmJson['metadata']['authors']" class="author-item">
-                        <button class="author-config-button" @click="editAuthorDialog(author)">
-                            <i class="fa-regular fa-pen-to-square" style="vertical-align: middle"></i>
-                            <span>{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.config") }}</span>
-                        </button>
-                        <div v-if="author['avatar']" class="avatar">
-                            <img :src="join(packDirectory, author['avatar'])" alt="avatar" width="76px">
-                        </div>
-                        <div v-else style="display: flex; align-items: center; height: 90px">
-                            <i class="fa-solid fa-image fa-4x" style="margin: 0 auto;"></i>
-                        </div>
-                        <p class="author-name">{{ author["name"] }}</p>
-                        <p class="author-role">{{ author["role"] }}</p>
-                        <p class="author-comment">{{ author["comment"] }}</p>
+        <div class="metadata-item">
+            <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors") }}</p>
+            <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.desc") }}</p>
+
+            <div class="author">
+                <div class="author-item" v-for="author in metadata['authors']">
+                    <button class="author-config-button" @click="editAuthorDialog(author)">
+                        <i class="fa-regular fa-pen-to-square" style="vertical-align: middle"></i>
+                        <span>{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.config") }}</span>
+                    </button>
+                    <div v-if="author['avatar']" class="avatar">
+                        <img :src="join(packDirectory, author['avatar'])" alt="avatar" width="76px">
                     </div>
-                    <div class="author-item">
-                        <div class="author-add" @click="openNewAuthorDialog">
-                            <i class="fa-solid fa-plus fa-4x" style="margin: 0 auto;"></i>
-                        </div>
+                    <div v-else style="display: flex; align-items: center; height: 90px">
+                        <i class="fa-solid fa-image fa-4x" style="margin: 0 auto;"></i>
+                    </div>
+                    <p class="author-name">{{ author["name"] }}</p>
+                    <p class="author-role">{{ author["role"] }}</p>
+                    <p class="author-comment">{{ author["comment"] }}</p>
+                </div>
+
+                <div class="author-item">
+                    <div class="author-add" @click="openNewAuthorDialog">
+                        <i class="fa-solid fa-plus fa-4x" style="margin: 0 auto;"></i>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="metadata-item">
-                <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.link") }}</p>
-                <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.link.desc") }}</p>
-                <div class="license-item">
-                    <p class="license-text">
-                        {{ tl("menu.ysm_utils.import_model_menu.metadata.link.home") }}
-                    </p>
-                    <input class="license-input" type="url" v-model.trim="ysmJson['metadata']['link']['home']">
-                </div>
-                <div class="license-item">
-                    <p class="license-text">
-                        {{ tl("menu.ysm_utils.import_model_menu.metadata.link.donate") }}
-                    </p>
-                    <input class="license-input" type="url" v-model.trim="ysmJson['metadata']['link']['donate']">
-                </div>
+
+        <div class="metadata-item">
+            <p class="title">{{ tl("menu.ysm_utils.import_model_menu.metadata.link") }}</p>
+            <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.link.desc") }}</p>
+
+            <div class="horizontal-item">
+                <p class="horizontal-text">{{ tl("menu.ysm_utils.import_model_menu.metadata.link.home") }}</p>
+                <input class="horizontal-input" type="url" v-model.trim="link['home']">
+            </div>
+
+            <div class="horizontal-item">
+                <p class="horizontal-text">{{ tl("menu.ysm_utils.import_model_menu.metadata.link.donate") }}</p>
+                <input class="horizontal-input" type="url" v-model.trim="link['donate']">
             </div>
         </div>
     </div>
@@ -226,18 +236,18 @@ export default {
     border-color: #181a1f;
 }
 
-.license-item {
+.horizontal-item {
     display: flex;
 }
 
-.license-text {
+.horizontal-text {
     width: 12%;
     margin-top: 7px;
     font-size: 15px;
     color: #6a6a6d
 }
 
-.license-input {
+.horizontal-input {
     flex: 1;
     border-radius: 1px;
     margin-top: 5px;
