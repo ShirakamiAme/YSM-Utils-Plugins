@@ -1,6 +1,7 @@
 import metadataVue from "./metadata.vue";
 import propertiesVue from "./properties.vue";
-import filesVue from "./files.vue";
+import playerFilesVue from "./player_files.vue";
+import arrowFilesVue from "./arrow_files.vue";
 import {join} from "path";
 import {oldVersionTransform} from "./old_version_transform.js";
 
@@ -95,7 +96,8 @@ function openImportMenu(packDirectory) {
             pages: {
                 "metadata": tl("menu.ysm_utils.import_model_menu.sidebar.metadata"),
                 "properties": tl("menu.ysm_utils.import_model_menu.sidebar.properties"),
-                "files": tl("menu.ysm_utils.import_model_menu.sidebar.files")
+                "player_files": tl("menu.ysm_utils.import_model_menu.sidebar.player_files"),
+                "arrow_files": tl("menu.ysm_utils.import_model_menu.sidebar.arrow_files")
             },
             page: "metadata",
             onPageSwitch(page) {
@@ -114,7 +116,8 @@ function openImportMenu(packDirectory) {
             components: {
                 metadataVue: metadataVue,
                 propertiesVue: propertiesVue,
-                filesVue: filesVue
+                playerFilesVue: playerFilesVue,
+                arrowFilesVue: arrowFilesVue
             },
             template: `
                 <div>
@@ -126,10 +129,14 @@ function openImportMenu(packDirectory) {
                                    :import-model-menu-dialog='importModelMenuDialog'
                                    :ysm-json='ysmJson'
                                    :pack-directory='packDirectory'/>
-                    <filesVue v-if="this.type==='files'"
-                              :import-model-menu-dialog='importModelMenuDialog'
-                              :ysm-json='ysmJson'
-                              :pack-directory='packDirectory'/>
+                    <playerFilesVue v-if="this.type==='player_files'"
+                                    :import-model-menu-dialog='importModelMenuDialog'
+                                    :ysm-json='ysmJson'
+                                    :pack-directory='packDirectory'/>
+                    <arrowFilesVue v-if="this.type==='arrow_files'"
+                                   :import-model-menu-dialog='importModelMenuDialog'
+                                   :ysm-json='ysmJson'
+                                   :pack-directory='packDirectory'/>
                 </div>`
         }
     });

@@ -29,8 +29,14 @@ export default {
 
 <template>
     <div>
-        <div class="files">
-            <div class="files-item">
+        <div>
+            <button style="width: 100%">
+                {{ tl("menu.ysm_utils.import_model_menu.files.import") }}
+            </button>
+        </div>
+
+        <div class="new-author">
+            <div class="new-author-item">
                 <p class="title">{{ tl("menu.ysm_utils.import_model_menu.files.player.model") }}</p>
                 <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.files.player.model.desc") }}</p>
                 <div class="list-item">
@@ -48,7 +54,7 @@ export default {
                 </div>
             </div>
 
-            <div class="files-item">
+            <div class="new-author-item">
                 <p class="title">{{ tl("menu.ysm_utils.import_model_menu.files.player.animation") }}</p>
                 <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.files.player.animation.desc") }}</p>
                 <div class="list-item">
@@ -106,7 +112,7 @@ export default {
                 </div>
             </div>
 
-            <div class="files-item">
+            <div class="new-author-item">
                 <p class="title">{{ tl("menu.ysm_utils.import_model_menu.files.player.texture") }}</p>
                 <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.files.player.texture.desc") }}</p>
                 <div v-for="texture in ysmJson['files']['player']['texture']" class="list-item">
@@ -137,13 +143,13 @@ export default {
 </template>
 
 <style scoped>
-.files {
+.new-author {
     width: 100%;
     overflow-y: auto;
     padding: 10px 20px
 }
 
-.files-item {
+.new-author-item {
     height: 100%;
     width: 100%;
     margin-top: 10px

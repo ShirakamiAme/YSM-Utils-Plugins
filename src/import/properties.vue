@@ -34,7 +34,7 @@ export default {
 <template>
     <div>
         <div class="properties">
-            <div class="properties-horizontal-item">
+            <div class="author-horizontal-item">
                 <div style="width: 50%">
                     <p class="title">{{ tl("menu.ysm_utils.import_model_menu.properties.height_scale") }}</p>
                     <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.properties.height_scale.desc") }}</p>
@@ -46,7 +46,7 @@ export default {
                 </div>
             </div>
 
-            <div class="properties-horizontal-item">
+            <div class="author-horizontal-item">
                 <div style="width: 50%">
                     <p class="title">{{ tl("menu.ysm_utils.import_model_menu.properties.width_scale") }}</p>
                     <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.properties.width_scale.desc") }}</p>
@@ -80,7 +80,7 @@ export default {
                 </div>
             </div>
 
-            <div class="properties-horizontal-item">
+            <div class="author-horizontal-item">
                 <div style="width: 68%">
                     <p class="title">{{ tl("menu.ysm_utils.import_model_menu.properties.preview_animation") }}</p>
                     <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.properties.preview_animation.desc") }}</p>
@@ -94,7 +94,7 @@ export default {
                 </div>
             </div>
 
-            <div class="properties-horizontal-item">
+            <div class="author-horizontal-item">
                 <div style="width: 68%">
                     <p class="title">{{ tl("menu.ysm_utils.import_model_menu.properties.default_texture") }}</p>
                     <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.properties.default_texture.desc") }}</p>
@@ -108,7 +108,7 @@ export default {
                 </div>
             </div>
 
-            <div class="properties-horizontal-item">
+            <div class="author-horizontal-item">
                 <div style="width: 68%">
                     <p class="title">{{ tl("menu.ysm_utils.import_model_menu.properties.free") }}</p>
                     <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.properties.free.desc") }}</p>
@@ -118,7 +118,7 @@ export default {
                 </div>
             </div>
 
-            <div class="properties-horizontal-item">
+            <div class="author-horizontal-item">
                 <div style="width: 68%">
                     <p class="title">{{ tl("menu.ysm_utils.import_model_menu.properties.render_layers_first") }}</p>
                     <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.properties.render_layers_first.desc") }}</p>
@@ -145,7 +145,7 @@ export default {
     margin-bottom: 20px
 }
 
-.properties-horizontal-item {
+.author-horizontal-item {
     height: 100%;
     width: 100%;
     margin-top: 10px;

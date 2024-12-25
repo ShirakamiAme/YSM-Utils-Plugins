@@ -1,5 +1,6 @@
 <script>
 import {join} from "path";
+import {editAuthorDialog, newAuthorDialog} from "./new_author.js";
 
 export default {
     props: {
@@ -28,6 +29,12 @@ export default {
                 return 3;
             }
             return size;
+        },
+        openNewAuthorDialog: function () {
+            newAuthorDialog(this.ysmJson, this.packDirectory);
+        },
+        editAuthorDialog: function (editAuthor) {
+            editAuthorDialog(this.ysmJson, this.packDirectory, editAuthor);
         }
     },
     computed: {}
@@ -72,7 +79,7 @@ export default {
                 <p class="desc">{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.desc") }}</p>
                 <div class="author">
                     <div v-for="author in ysmJson['metadata']['authors']" class="author-item">
-                        <button class="author-config-button">
+                        <button class="author-config-button" @click="editAuthorDialog(author)">
                             <i class="fa-regular fa-pen-to-square" style="vertical-align: middle"></i>
                             <span>{{ tl("menu.ysm_utils.import_model_menu.metadata.authors.config") }}</span>
                         </button>
@@ -87,7 +94,7 @@ export default {
                         <p class="author-comment">{{ author["comment"] }}</p>
                     </div>
                     <div class="author-item">
-                        <div class="author-add">
+                        <div class="author-add" @click="openNewAuthorDialog">
                             <i class="fa-solid fa-plus fa-4x" style="margin: 0 auto;"></i>
                         </div>
                     </div>
